@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.choongliu.goaltree'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'com.choongliu.goaltree.GoalTreeApp'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

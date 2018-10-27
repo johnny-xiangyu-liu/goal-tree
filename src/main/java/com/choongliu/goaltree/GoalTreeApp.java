@@ -23,10 +23,9 @@
  */
 package com.choongliu.goaltree;
 
-public class Main {
+public class GoalTreeApp {
 
     public static void main(String[] args) {
-	// write your code here
         System.out.println("hi");
     }
 }
