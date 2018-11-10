@@ -22,23 +22,43 @@
  * SOFTWARE.
  */
 
-package com.choongliu.goaltree.blocks;
+package com.choongliu.goaltree.blocks.ui;
 
-import com.choongliu.goaltree.blocks.geometry.Point;
-import com.choongliu.goaltree.blocks.geometry.Rectangle;
-import com.choongliu.goaltree.blocks.geometry.Size;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.choongliu.goaltree.datastructure.Edge;
+import com.choongliu.goaltree.datastructure.Node;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 
-@Getter
-@EqualsAndHashCode
-@ToString(callSuper=true)
-public class Block extends Rectangle {
-    private long id;
+public class TreePanel extends JPanel {
 
-    public Block(long id, Point p, Size s) {
-        super(p, s);
-        this.id = id;
+    public TreePanel(Node node){
+        super();
+
+        //Create the nodes.
+        DefaultMutableTreeNode top = createTree(node);
+        JTree tree = new JTree(top);
+        JScrollPane treeView = new JScrollPane(tree);
+        add(treeView);
+    }
+
+
+    private DefaultMutableTreeNode createTree(Node node){
+        if (node == null) return null;
+        DefaultMutableTreeNode cur =
+                new DefaultMutableTreeNode(node.getData());
+
+        List<Edge> edges = node.getChildren();
+        for (Edge edge : edges) {
+            DefaultMutableTreeNode child = createTree(edge.getTo());
+            if (child != null) {
+                cur.add(child);
+
+                System.out.println(cur  + " to " + child);
+            }
+        }
+        return cur;
     }
 }

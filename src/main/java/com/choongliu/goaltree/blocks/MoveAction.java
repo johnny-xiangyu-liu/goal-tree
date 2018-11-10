@@ -24,13 +24,19 @@
 
 package com.choongliu.goaltree.blocks;
 
+import com.choongliu.goaltree.blocks.geometry.Point;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
-@Setter
+/**
+ * Move action that moves the given block to the new topLeft corner
+ */
+@AllArgsConstructor
 @Getter
-public class Point {
-    private int x;
-    private int y;
-
+@ToString
+public class MoveAction {
+    private String message;
+    private Block block;
+    private Point topLeft;
 }

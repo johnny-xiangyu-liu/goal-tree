@@ -24,9 +24,27 @@
 
 package com.choongliu.goaltree.blocks;
 
+import com.choongliu.goaltree.blocks.geometry.Point;
+
 public interface Movable {
     /**
-     * Move to given point.
+     * default calling moveTo(x,y);
      */
-    boolean move(Point point);
+    default void moveTo(Point point) {
+        moveTo(point.getX(), point.getY());
+    }
+
+    void moveTo(int x, int y);
+
+    /**
+     * Default calling moveBy(x,y);
+     */
+    default void moveBy(Point point) {
+        moveBy(point.getX(), point.getY());
+    }
+
+    /**
+     * Move by the given x and y
+     */
+    void moveBy(int x, int y);
 }
